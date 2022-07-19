@@ -1,5 +1,3 @@
-# Import Libraries
-import openpyxl as xl
 import glob
 import os
 from openpyxl import load_workbook, Workbook
@@ -49,33 +47,27 @@ def write_data(list2):
     print(desi)
     print(loc)
     print(name)
-    write_dataa(emp_id,desi,loc,name)
+    write_dataa(emp_id, desi, loc, name)
 
-def write_dataa(emp_id,desi,loc,name):
+
+def write_dataa(emp_id, desi, loc, name):
     wb = Workbook()
     ws = wb.active
 
-    start_row = 2
-    start_col = 2
+    for i, statN in enumerate(emp_id):
+        ws.cell(row=i + 1, column=1).value = statN
 
-    # for id,des,loca,nam in zip(emp_id,desi,loc,name):
+    for i, statN in enumerate(desi):
+        ws.cell(row=i + 1, column=2).value = statN
 
-    for i, statN in enumerate (emp_id):
-        ws.cell(row=i + 3, column=1).value = statN
+    for i, statN in enumerate(loc):
+        ws.cell(row=i + 1, column=3).value = statN
 
-    for i, statN in enumerate (desi):
-        ws.cell(row=i + 3, column=2).value = statN
-
-    for i, statN in enumerate (loc):
-        ws.cell(row=i + 3, column=3).value = statN
-
-    for i, statN in enumerate (name):
-        ws.cell(row=i + 3, column=4).value = statN
+    for i, statN in enumerate(name):
+        ws.cell(row=i + 1, column=4).value = statN
 
     wb.save("Output.xlsx")
 
+
 if __name__ == '__main__':
-     read_files()
-    # ws = wb.active
-    # sheet1_value = (list(iter_rows(ws)))
-    # print(sheet1_value)
+    read_files()
